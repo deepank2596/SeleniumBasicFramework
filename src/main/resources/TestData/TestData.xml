@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestData>
+		<element name="Deepank">
+			<locator>NewDelhi</locator>
+			<type>City</type>
+		</element>
+		
+		<element name="Shashank">
+			<locator>Noida</locator>
+			<type>City</type>
+		</element>
+		
+		<element name="Rishab">
+			<locator>Mumbai</locator>
+			<type>City</type>
+		</element>
+</TestData>
