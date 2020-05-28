@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import app.utilities.DriverManager;
+import app.utilities.ExtentReportManager;
 
 /**
  * Hello world!
@@ -46,8 +47,9 @@ public class App {
 		return childElementsList;
 	}
 
-	public static void main(String[] args) throws InterruptedException {
-		System.out.println("Hello World!");
+	public static void main(String[] args) throws Exception {
+		
+		ExtentReportManager oRPT = new ExtentReportManager("Test SS64 Site functionality");
 
 		DriverManager driverManager = new DriverManager();
 
@@ -56,6 +58,14 @@ public class App {
 		driver.navigate().to("https://ss64.com/vb/sendkeys.html");
 
 		waitForPageLoad(driver);
+		
+		if(driver.getTitle().contains("SendKeys - VBScript - SS64.com")) {
+			
+			oRPT.passed("Expected Title is Displayed :" + driver.getTitle(),driver);
+		}else {
+			oRPT.failed("Expected Title is Displayed :" + driver.getTitle(),driver);
+		}
+				
 
 		WebElement parentElement = getWebElement(driver, By.xpath("//tbody"));
 
@@ -64,7 +74,8 @@ public class App {
 		childElements.forEach(ele -> {
 			System.out.println(ele.getAttribute("innerText"));
 		});
-
+		
+		oRPT.flushReports();
 		driverManager.closeDriver();
 	}
 }
